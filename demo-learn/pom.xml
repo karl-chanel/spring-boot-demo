@@ -25,26 +25,146 @@
     <java.version>17</java.version>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-runner</artifactId>
+      <version>1.8.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->
+    <dependency>
+      <groupId>com.alibaba.fastjson2</groupId>
+      <artifactId>fastjson2</artifactId>
+      <version>2.0.21</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+
 
   </dependencies>
   <build>
     <plugins>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.7</version>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.2</version>
         <configuration>
-          <locales>en_US</locales>
-          <outputDirectory>${project.build.directory}/site</outputDirectory>
-          <relativizeDecorationLinks>false</relativizeDecorationLinks>
+          <finalName>jar-plugin.1.0</finalName>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>com.example.demolearn.Calculus</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <finalName>assembly-plugin.1.0</finalName>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>
+                com.example.demolearn.Calculus
+              </mainClass>
+            </manifest>
+
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <!-- 绑定到package生命周期阶段上 -->
+            <phase>package</phase>
+            <goals>
+              <!-- 绑定到package生命周期阶段上 -->
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <finalName>shade-plugin.1.0</finalName>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.example.demolearn.Calculus</mainClass>
+                </transformer>
+              </transformers>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/DEPENDENCIES</exclude>
+                    <exclude>META-INF/LICENSE*</exclude>
+                    <exclude>META-INF/NOTICE*</exclude>
+                    <exclude>META-INF/MANIFEST*</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.4.0</version>
-      </plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <additionalClasspathElements>
+            <additionalClasspathElement>src/test/java/</additionalClasspathElement>
+          </additionalClasspathElements>
+        </configuration>
+      </plugin> -->
+
+      <!--      <plugin>-->
+      <!--        <groupId>org.apache.maven.plugins</groupId>-->
+      <!--        <artifactId>maven-site-plugin</artifactId>-->
+      <!--        <version>3.7</version>-->
+      <!--        <configuration>-->
+      <!--          <locales>en_US</locales>-->
+      <!--          <outputDirectory>${project.build.directory}/site</outputDirectory>-->
+      <!--          <relativizeDecorationLinks>false</relativizeDecorationLinks>-->
+      <!--        </configuration>-->
+      <!--      </plugin>-->
+      <!--      <plugin>-->
+      <!--        <groupId>org.apache.maven.plugins</groupId>-->
+      <!--        <artifactId>maven-project-info-reports-plugin</artifactId>-->
+      <!--        <version>3.4.0</version>-->
+      <!--      </plugin>-->
     </plugins>
   </build>
 

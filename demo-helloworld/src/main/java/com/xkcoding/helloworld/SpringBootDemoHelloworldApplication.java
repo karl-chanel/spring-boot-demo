@@ -1,6 +1,7 @@
 package com.xkcoding.helloworld;
 
 import cn.hutool.core.util.StrUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @SpringBootApplication
 @RestController
+@Slf4j
 public class SpringBootDemoHelloworldApplication {
-
+    private static long count = 0;
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDemoHelloworldApplication.class, args);
     }
@@ -31,9 +33,11 @@ public class SpringBootDemoHelloworldApplication {
      */
     @GetMapping("/hello")
     public String sayHello(@RequestParam(required = false, name = "who") String who) {
+        count++;
         if (StrUtil.isBlank(who)) {
             who = "World";
         }
+        log.info(String.valueOf(count));
         return StrUtil.format("Hello, {}!", who);
     }
 }

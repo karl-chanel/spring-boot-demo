@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true ">
+  <property name="LOG_DIR" value="./demo-learn/logs" />
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      <charset>utf-8</charset>
+    </encoder>
+    <file>${LOG_DIR}/logs-study.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <FileNamePattern>${LOG_DIR}/logs-study.log-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+      <!--日志文件保留天数-->
+      <MaxHistory>7</MaxHistory>
+      <MaxFileSize>1MB</MaxFileSize>
+    </rollingPolicy>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>
