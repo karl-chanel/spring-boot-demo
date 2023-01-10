@@ -1,0 +1,13 @@
+use learnjdbc;
+INSERT INTO students (name, gender, grade, score) VALUES ('小明', 1, 1, 88);
+INSERT INTO students (name, gender, grade, score) VALUES ('小红', 1, 1, 95);
+INSERT INTO students (name, gender, grade, score) VALUES ('小军', 0, 1, 93);
+INSERT INTO students (name, gender, grade, score) VALUES ('小白', 0, 1, 100);
+INSERT INTO students (name, gender, grade, score) VALUES ('小牛', 1, 2, 96);
+INSERT INTO students (name, gender, grade, score) VALUES ('小兵', 1, 2, 99);
+INSERT INTO students (name, gender, grade, score) VALUES ('小强', 0, 2, 86);
+INSERT INTO students (name, gender, grade, score) VALUES ('小乔', 0, 2, 79);
+INSERT INTO students (name, gender, grade, score) VALUES ('小青', 1, 3, 85);
+INSERT INTO students (name, gender, grade, score) VALUES ('小王', 1, 3, 90);
+INSERT INTO students (name, gender, grade, score) VALUES ('小林', 0, 3, 91);
+INSERT INTO students (name, gender, grade, score) VALUES ('小贝', 0, 3, 77);
